@@ -1,0 +1,78 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+class Student{
+    private String name;
+    private int rollno;
+    private int year;
+    private String branch;
+    private List<Integer> marks;
+    private static int nostudents;
+    public Student(String name,int rollno,String branch,int year){
+        this.name=name;
+        this.rollno=rollno;
+        this.year=year;
+        this.branch=branch;
+        marks=new ArrayList<>();
+        nostudents++;
+    }
+    public String getName(){
+        return name;
+    }
+    public int getRollNo(){
+        return rollno;
+    }
+    public int getYear(){
+        return year;
+    }
+    public String getBranch(){
+        return branch;
+    }
+    public List<Integer>getMarks(){
+        return marks;
+    }
+    public void setMarks(int obtainedMark){
+        marks.add(obtainedMark);
+    }
+    public double computePercentage(){
+        double sum=0;
+        for(Integer mark:marks){
+            sum=sum+mark;
+        }
+        if(marks.size()==0){
+            return 0;
+        }
+        return sum/marks.size();
+    }
+    public static void displaynumstuds(){
+        System.out.println("NoOfStudents="+nostudents);
+    }
+    }
+
+public class Solution {
+
+    public static void main(String[] args) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+        Scanner in=new Scanner(System.in);
+        int n=Integer.parseInt(in.nextLine());
+        for(int i=0;i<n;i++){
+            String []line=in.nextLine().split(" ");
+            String na=line[0];
+            int rn=Integer.parseInt(line[1]);
+            String bh=line[2];
+            int yr=Integer.parseInt(line[3]);
+            Student s=new Student(na,rn,bh,yr);
+            String []nums=in.nextLine().split(" "); 
+            for(int j=0;j<nums.length;j++){
+                s.setMarks(Integer.parseInt(nums[j]));
+            }
+            System.out.println(rn+" "+na+" "+bh+" "+yr);
+            System.out.print(rn+" ");
+            System.out.printf("%.2f",s.computePercentage());
+            System.out.println();
+        }
+        Student.displaynumstuds();
+    }
+}
