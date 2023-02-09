@@ -1,0 +1,47 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+class IntegerList{
+    static int eleInd=0;
+    static int el=0;
+    private int size;
+    private List<Integer> list;
+    IntegerList(int size){
+        this.size=size;
+        list=new ArrayList<>();
+        }
+    
+    public void adds(int value){
+        if (eleInd<size){
+        list.add(value);
+            eleInd++;
+        }
+        else{
+            System.out.println("can't add, list is full");
+            eleInd++;
+        }
+    }
+    public String toStrings(){
+        el++;
+        return Integer.toString(list.get(el-1));
+    }
+}
+
+public class Solution {
+
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int capacity = Integer.parseInt(in.nextLine());
+        IntegerList nums = new IntegerList(capacity);
+        while(in.hasNextLine()){
+            int num = Integer.parseInt(in.nextLine());
+            nums.adds(num); 
+        }
+        for (int ii=0;ii<capacity;ii++){
+        System.out.print(ii+" "+":"+" ");
+        System.out.println(nums.toStrings());
+        }
+    } 
+}
